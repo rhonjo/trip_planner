@@ -1,0 +1,53 @@
+<style>
+label{
+   display: inline-block;
+   width: 100px;
+}
+h6{
+   display: inline-block;
+}
+body{
+      background-image: url("sand.jpg");
+      color: white;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto; z-index: -100;
+      background-size: cover;
+   }
+   .plan, .comment{
+     font-weight:100; 
+     background: rgba(0,0,0,0.3);
+     color: white;
+     padding: 2rem;
+     width: 800px;
+     margin:10 auto;
+     font-size: 1.2rem;
+
+   }
+   .text{
+      width: 400px;
+   }
+
+</style>
+<div ng-controller='planController'>
+   
+   
+   <div class="plan">
+   		<h5>{{plans.name}}</h5>
+         <label> Posted by : </label> <h6><a href="#">{{plans.username}}</a></h6><br>
+   		<label> Category : </label> <h6>{{plans.cat}}</h6><br>
+         <label> date:  </label><h6>{{plans.datefrom}} ~ {{plans.dateto}}</h6>
+   	</div>
+	<div class='comment'>
+	  <form>
+       <h5>Comments</h5>
+         <p  ng-repeat="each in comments">
+            {{each.comment}}
+         </p>
+	     <h6>Post your comments here...</h6><br>
+			  <input class="text" type='text' ng-model='newComment.comment'><br>
+			    <input class="button-primary" type='submit' value='Submit' ng-click='addComment(plans._id)'>
+          <a class="button" href="#/dashboard">Back</a>
+	  </form> 
+   </div>
+	          
+</div>

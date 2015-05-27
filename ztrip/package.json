@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "description": "test",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.10.0",
+    "cookies": "*",
+    "mongoose": "^4.0.1"
+  }
+}

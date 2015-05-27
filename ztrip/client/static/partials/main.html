@@ -1,0 +1,56 @@
+<style>
+video#bgvid {
+position: fixed; right: 0; bottom: 0;
+min-width: 100%; min-height: 100%;
+width: auto; height: auto; z-index: -100;
+background-size: cover;
+}
+h4{
+	color: white;
+	font-size: 3rem;
+  	margin-top: 0;
+  	letter-spacing: .3rem;
+  	display: inline-block;
+}
+h6{
+	display: inline-block;
+	width: 80px;
+}
+.join{
+
+  font-family: trattatello;
+  font-weight:100; 
+  background: rgba(0,0,0,0.3);
+  color: white;
+  padding: 2rem;
+  width: 400px;
+  margin:200 auto;
+  font-size: 1.2rem;
+}
+.button{ 
+  display: block;
+  width: 30%;
+  padding: .4rem;
+  border: none; 
+  margin: 1rem auto; 
+  font-size: 1.3rem;
+  background: green;
+  border-radius: 3px; 
+  cursor: pointer;
+}
+
+
+</style>
+
+<div ng-controller='loginController' class="join">
+    <video id="bgvid" autoplay loop>
+		<source src="looped.mp4" type="video/mp4">
+	</video> 
+     
+     <h4>Join and share your plans</h4>
+     <form action='#/dashboard'>
+		<h6>Name:</h6> <input type='text' ng-model='newUser.name'>
+		    <input class="button" type='submit' value='Enter!' ng-click='addUser()'>
+	 </form>
+
+</div>

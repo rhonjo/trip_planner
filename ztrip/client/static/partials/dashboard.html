@@ -1,0 +1,129 @@
+<style>
+	label{
+		display: inline-block;
+		width: 100px;
+	}
+	.text{
+		width: 400px;
+	}
+	.textarea{
+		width: 400px;
+		height: 100px;
+	}
+	h4{
+		display: inline-block;
+		font-family: trattatello;
+	}
+	.color{
+		margin-right: 90px;
+	}
+	img{
+		width: 20px;
+		height: 20px;
+		margin: 10px;
+		
+	}
+	.addplan{
+	  font-family: trattatello;
+	  font-weight:100; 
+	  background: rgba(0,0,0,0.3);
+	  color: white;
+	  padding: 2rem;
+	  width: 600px;
+	  margin:10 auto;
+	  font-size: 1.2rem;
+
+	}
+	.plans{
+	  font-weight:100; 
+	  background: rgba(0,0,0,0.3);
+	  color: white;
+	  padding: 2rem;
+	  width: 800px;
+	  margin:10 auto;
+	  font-size: 1.2rem;
+
+	}
+	.button{ 
+	  display: block;
+	  width: 30%;
+	  padding: .4rem;
+	  border: none; 
+	  margin: 1rem auto; 
+	  font-size: 1.3rem;
+	  border-radius: 3px; 
+	  cursor: pointer;
+	}
+	body{
+		background-image: url("bike.jpg");
+		min-width: 100%; min-height: 100%;
+		width: auto; height: auto; z-index: -100;
+		background-size: cover;
+		color: white;
+	}
+	.logout, .form{
+		float: right;
+		display: inline-block;
+		margin-right: 30px;
+	}
+	.numcounts, .vote{
+		text-align: center;
+	}
+</style>
+
+
+<div ng-controller='dashboardController'>
+     <h4>Welcome, {{ newUser.name }}!</h4>
+     	<form action="/" class="form">
+     		 <input ng-click='logout()' class='logout' type='submit' value='Log out!'>
+     	</form>
+      	<div class="addplan">
+     	 <form>
+	      		<h5>Add a New Plan</h5>
+			    <label>Plan name: </label><input class="text" type='text' ng-model='newPlan.name' required><br>
+			    <label>Pick a color: </label><input class="color" type='color' ng-model='newPlan.color'>
+			    <label>Category: </label><select ng-model='newPlan.cat' required>
+			    				<option>Work</option>
+			    				<option>Play</option>
+			    				<option>Both</option>
+			    				<option>Private</option>
+			    				<option>Other</option>
+			    		  </select><br>
+
+			     <label>Date From: </label><input type='datetime-local' ng-model='newPlan.datefrom' required><br>
+			     
+			     <label>Date To: </label><input type='datetime-local' ng-model='newPlan.dateto' required><br>
+			     
+
+			    <input class="button" type='submit' value='Submit' ng-click='addPlan()'>
+			</form> 
+		</div>
+	     
+	<div class='plans'> 
+		Search Plans: <input class="text" type="text" ng-model="filter_name">
+		<table>
+	        <tr>
+	          <th>Category</th>
+	          <th>Plan Name</th>
+	          <th>Date</th>
+	          <th>User Name</th>
+	          <th>Number of comments</th>
+	          <th>Vote</th>
+	          <th>Action</th>
+	        </tr>
+	      
+	        <tr ng-repeat="plan in plans | filter:filter_name | orderBy:'-vote'">
+	          <td ng-bind="plan.cat"></td>
+	          <td><a href='#/plan/{{plan._id}}' ng-click='showTopic()' ng-bind="plan.name"></a></td>
+	          <td>{{plan.datefrom}} ~ {{plan.dateto}}</td>
+	          <td><a href='#/users/' ng-click='' ng-bind="plan.username"></a></td>
+	          <td ng-bind="plan.numcomments" class='numcounts'></td>
+	          <td ng-bind="plan.vote" class='vote'></td>
+	          <td><img href='#' ng-click='upvote(plan._id)' src="uparrow.jpg"><img href='#' ng-click='downvote(plan._id)' src="downarrow.jpg"></td>
+	          
+	        </tr>
+	      </table> 
+	</div>
+
+</div>
+
